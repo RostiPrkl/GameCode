@@ -1,0 +1,38 @@
+[gd_scene load_steps=3 format=3 uid="uid://crs7gyjiwend7"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_2pfxn"]
+size = Vector3(1, 20, 500)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_jrgri"]
+size = Vector3(450, 20, 1)
+
+[node name="Boundary" type="Node3D"]
+
+[node name="LeftWall" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -258, 0, 0)
+collision_layer = 16
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LeftWall"]
+shape = SubResource("BoxShape3D_2pfxn")
+
+[node name="RightWall" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 89.6544, 0, 0)
+collision_layer = 16
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RightWall"]
+shape = SubResource("BoxShape3D_2pfxn")
+
+[node name="UpWall" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21.3346, 0, -120.867)
+collision_layer = 16
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="UpWall"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -42.8011, 0, 0)
+shape = SubResource("BoxShape3D_jrgri")
+
+[node name="DownWall" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -64.2252, 0, 128.851)
+collision_layer = 16
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="DownWall"]
+shape = SubResource("BoxShape3D_jrgri")

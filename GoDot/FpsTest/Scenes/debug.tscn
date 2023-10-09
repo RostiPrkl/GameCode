@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://dyey55batldqr"]
+
+[ext_resource type="FontFile" uid="uid://blcgo7pvvs41p" path="res://Fonts/ChakraPetch-Medium.ttf" id="1_xtc0u"]
+[ext_resource type="Script" path="res://Scenes/debug.gd" id="2_bm2eb"]
+
+[node name="Debug" type="Label"]
+theme_override_fonts/font = ExtResource("1_xtc0u")
+theme_override_font_sizes/font_size = 12
+script = ExtResource("2_bm2eb")

@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://dthc7mex6ynhs"]
+
+[ext_resource type="Script" path="res://Scenes/enemy_spawner.gd" id="1_bhkuo"]
+[ext_resource type="PackedScene" uid="uid://dwkuxehkd2u2n" path="res://Scenes/enemy.tscn" id="2_kagcr"]
+
+[node name="EnemySpawner" type="Marker2D"]
+script = ExtResource("1_bhkuo")
+enemy_scene = ExtResource("2_kagcr")
+
+[node name="SpawnTimer" type="Timer" parent="."]
+wait_time = 1.5
+autostart = true

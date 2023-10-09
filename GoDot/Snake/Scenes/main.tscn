@@ -1,0 +1,55 @@
+[gd_scene load_steps=9 format=3 uid="uid://b3ts4lkpfagj3"]
+
+[ext_resource type="Texture2D" uid="uid://cdxw54widtn78" path="res://Assets/textures/Snake_spritesheet.png" id="1_o0cvk"]
+[ext_resource type="Script" path="res://Scenes/main.gd" id="1_tydv0"]
+[ext_resource type="Texture2D" uid="uid://bm75edlayplwk" path="res://Assets/textures/apple.png" id="2_s5o3e"]
+[ext_resource type="Texture2D" uid="uid://p8o50wapewvc" path="res://Assets/textures/grass.png" id="4_tsq72"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_h0jtp"]
+texture = ExtResource("1_o0cvk")
+texture_region_size = Vector2i(40, 40)
+1:0/0 = 0
+0:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+2:1/0 = 0
+2:0/0 = 0
+3:0/0 = 0
+3:1/0 = 0
+4:0/0 = 0
+4:1/0 = 0
+5:0/0 = 0
+5:1/0 = 0
+6:0/0 = 0
+6:1/0 = 0
+7:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_xherj"]
+texture = ExtResource("2_s5o3e")
+texture_region_size = Vector2i(40, 40)
+0:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_4w3cy"]
+texture = ExtResource("4_tsq72")
+texture_region_size = Vector2i(40, 40)
+0:0/0 = 0
+1:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_l7psu"]
+tile_size = Vector2i(40, 40)
+navigation_layer_0/layers = 0
+sources/0 = SubResource("TileSetAtlasSource_h0jtp")
+sources/1 = SubResource("TileSetAtlasSource_xherj")
+sources/2 = SubResource("TileSetAtlasSource_4w3cy")
+
+[node name="Main" type="Node2D"]
+script = ExtResource("1_tydv0")
+
+[node name="TileMap" type="TileMap" parent="."]
+tile_set = SubResource("TileSet_l7psu")
+cell_quadrant_size = 32
+format = 2
+layer_0/y_sort_enabled = true
+layer_0/tile_data = PackedInt32Array(0, 2, 1, 196610, 1, 0, 262149, 131072, 1, 327685, 262144, 1, 393221, 262144, 1, 458757, 262144, 1, 524293, 262144, 1, 589829, 262144, 1, 655365, 327680, 1, 655370, 65536, 0, 655369, 262144, 0, 655368, 262144, 0, 655367, 262144, 0, 655366, 262144, 0)

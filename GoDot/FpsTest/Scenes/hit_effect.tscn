@@ -1,0 +1,44 @@
+[gd_scene load_steps=5 format=3 uid="uid://ytukybt6yry5"]
+
+[ext_resource type="Script" path="res://Scenes/hit_effect.gd" id="1_1qhjp"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_16i4s"]
+shading_mode = 0
+vertex_color_use_as_albedo = true
+billboard_mode = 3
+billboard_keep_scale = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="QuadMesh" id="QuadMesh_y0av4"]
+material = SubResource("StandardMaterial3D_16i4s")
+
+[sub_resource type="Gradient" id="Gradient_x754u"]
+offsets = PackedFloat32Array(0, 0.503311, 1)
+colors = PackedColorArray(0, 0.615796, 0.712211, 1, 0.813143, 0.301508, 0.204221, 1, 0.960814, 0.745319, 0.335075, 1)
+
+[node name="hit_effect" type="CPUParticles3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 4)
+sorting_offset = 150.0
+amount = 50
+lifetime = 0.3
+explosiveness = 0.71
+randomness = 0.69
+local_coords = true
+mesh = SubResource("QuadMesh_y0av4")
+spread = 180.0
+gravity = Vector3(0, 0, 0)
+initial_velocity_min = 10.0
+initial_velocity_max = 20.0
+angular_velocity_min = 200.0
+angular_velocity_max = 200.0
+linear_accel_min = -94.95
+linear_accel_max = -16.16
+radial_accel_min = -30.3
+radial_accel_max = 13.07
+damping_max = 33.334
+scale_amount_min = 0.2
+scale_amount_max = 0.2
+color_ramp = SubResource("Gradient_x754u")
+script = ExtResource("1_1qhjp")

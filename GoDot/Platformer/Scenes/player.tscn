@@ -1,0 +1,101 @@
+[gd_scene load_steps=10 format=3 uid="uid://5tnfl8lpp26t"]
+
+[ext_resource type="Script" path="res://Scenes/Player.gd" id="1_6tdyq"]
+[ext_resource type="Texture2D" uid="uid://db3jwgmk40a5" path="res://Assets/Player/player_02.png" id="2_04u7v"]
+[ext_resource type="Texture2D" uid="uid://c8lvmr05kyg1j" path="res://Assets/Player/player_01.png" id="2_b0im2"]
+[ext_resource type="Texture2D" uid="uid://cok1fnlqyuym0" path="res://Assets/Player/player_00.png" id="3_7t0qx"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6se7g"]
+size = Vector2(12, 19)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_sps56"]
+radius = 12.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ac1tx"]
+radius = 14.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_rgya3"]
+radius = 7.0
+height = 20.0
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_q072c"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_04u7v")
+}],
+"loop": true,
+"name": &"dash",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_b0im2")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_7t0qx")
+}],
+"loop": true,
+"name": &"jump",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_7t0qx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_b0im2")
+}],
+"loop": true,
+"name": &"run",
+"speed": 2.0
+}]
+
+[node name="Player" type="CharacterBody2D" groups=["player"]]
+collision_layer = 0
+script = ExtResource("1_6tdyq")
+dash_hurt_mask = 16
+
+[node name="CoyoteTimer" type="Timer" parent="."]
+wait_time = 0.18
+one_shot = true
+
+[node name="HurtBox" type="Area2D" parent="."]
+position = Vector2(0, -11)
+collision_layer = 0
+collision_mask = 80
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
+shape = SubResource("RectangleShape2D_6se7g")
+
+[node name="PickupArea" type="Area2D" parent="."]
+position = Vector2(0, -11)
+collision_layer = 128
+collision_mask = 128
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PickupArea"]
+shape = SubResource("CircleShape2D_sps56")
+
+[node name="DashArea" type="Area2D" parent="."]
+collision_layer = 32
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DashArea"]
+position = Vector2(0, -11)
+shape = SubResource("CircleShape2D_ac1tx")
+disabled = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -11)
+shape = SubResource("CapsuleShape2D_rgya3")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_q072c")
+animation = &"dash"
+speed_scale = 5.0
+offset = Vector2(0, -10.812)

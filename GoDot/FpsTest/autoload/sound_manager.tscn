@@ -1,0 +1,24 @@
+[gd_scene load_steps=6 format=3 uid="uid://jbo1lrjuqw4v"]
+
+[ext_resource type="Script" path="res://autoload/sound_manager.gd" id="1_ss4pu"]
+[ext_resource type="AudioStream" uid="uid://bi4ymul7w41g0" path="res://Audio/laser.wav" id="2_upqcr"]
+[ext_resource type="AudioStream" uid="uid://v4hxenivmg5d" path="res://Audio/explosion_short.wav" id="3_ladpv"]
+[ext_resource type="AudioStream" uid="uid://cv4lkcwurf2fk" path="res://Audio/rock_hit.wav" id="4_fbgim"]
+[ext_resource type="AudioStream" uid="uid://cdgd8pp5ce4ms" path="res://Audio/enemy_hit.wav" id="5_cnjw6"]
+
+[node name="sound_manager" type="Node"]
+script = ExtResource("1_ss4pu")
+
+[node name="LaserSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("2_upqcr")
+volume_db = -8.0
+
+[node name="ExplosionSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_ladpv")
+
+[node name="RockHitSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_fbgim")
+volume_db = -4.029
+
+[node name="EnemyHitSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_cnjw6")

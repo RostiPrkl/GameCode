@@ -1,0 +1,61 @@
+[gd_scene load_steps=4 format=3 uid="uid://cehodo7n680qm"]
+
+[ext_resource type="FontFile" uid="uid://b2oxqmtvqv2h0" path="res://Fonts/Jura-VariableFont_wght.ttf" id="1_4r7mr"]
+[ext_resource type="Script" path="res://Scenes/HUD.gd" id="1_5217v"]
+[ext_resource type="Texture2D" uid="uid://cgk4qigfhif21" path="res://UI/overlay.png" id="1_kr8sp"]
+
+[node name="HUD" type="CanvasLayer"]
+script = ExtResource("1_5217v")
+
+[node name="Overlay" type="Sprite2D" parent="."]
+position = Vector2(800, 450)
+scale = Vector2(0.625, 0.625)
+texture = ExtResource("1_kr8sp")
+
+[node name="Player" type="MarginContainer" parent="."]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -324.0
+offset_bottom = 136.0
+grow_horizontal = 0
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="GridContainer" type="GridContainer" parent="Player"]
+layout_direction = 1
+layout_mode = 2
+
+[node name="HullLabel" type="Label" parent="Player/GridContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_4r7mr")
+theme_override_font_sizes/font_size = 20
+text = "HULL INTEGRITY"
+
+[node name="HullBar" type="ProgressBar" parent="Player/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 6
+size_flags_stretch_ratio = 3.37
+theme_override_fonts/font = ExtResource("1_4r7mr")
+step = 1.0
+value = 100.0
+rounded = true
+
+[node name="ShieldLabel" type="Label" parent="Player/GridContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_4r7mr")
+theme_override_font_sizes/font_size = 20
+text = "SHIELD POWER"
+
+[node name="ShieldBar" type="ProgressBar" parent="Player/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 6
+size_flags_stretch_ratio = 3.37
+theme_override_fonts/font = ExtResource("1_4r7mr")
+step = 1.0
+value = 100.0
+rounded = true

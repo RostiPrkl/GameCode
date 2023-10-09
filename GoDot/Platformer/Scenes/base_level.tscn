@@ -1,0 +1,32 @@
+[gd_scene load_steps=7 format=3 uid="uid://bpcomg7dyfdre"]
+
+[ext_resource type="PackedScene" uid="uid://bsvhfxlfb57ec" path="res://Scenes/game_camera.tscn" id="1_uoqmo"]
+[ext_resource type="Script" path="res://Scenes/base_level.gd" id="1_w4eoj"]
+[ext_resource type="PackedScene" uid="uid://bjlxfup0hk7mn" path="res://Scenes/UI/level_ui.tscn" id="2_nlc78"]
+[ext_resource type="PackedScene" uid="uid://5tnfl8lpp26t" path="res://Scenes/player.tscn" id="2_ua0kg"]
+[ext_resource type="TileSet" uid="uid://c04x65vxjhgko" path="res://resources/tile_set.tres" id="3_xbcut"]
+[ext_resource type="PackedScene" uid="uid://kckaxxlk1m40" path="res://Scenes/flag.tscn" id="4_6gl45"]
+
+[node name="BaseLevel" type="Node" groups=["base_level"]]
+script = ExtResource("1_w4eoj")
+
+[node name="LevelUI" parent="." instance=ExtResource("2_nlc78")]
+
+[node name="GameCamera" parent="." instance=ExtResource("1_uoqmo")]
+position = Vector2(0, 0)
+
+[node name="WinCondition" type="Node2D" parent="." groups=["base_level"]]
+
+[node name="Flag" parent="WinCondition" instance=ExtResource("4_6gl45")]
+
+[node name="Enemies" type="Node2D" parent="."]
+
+[node name="Collectables" type="Node2D" parent="."]
+
+[node name="Traps" type="Node2D" parent="."]
+
+[node name="Player" parent="." instance=ExtResource("2_ua0kg")]
+
+[node name="TileMap" type="TileMap" parent="."]
+tile_set = ExtResource("3_xbcut")
+format = 2

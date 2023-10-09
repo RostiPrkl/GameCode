@@ -1,0 +1,19 @@
+[gd_resource type="Theme" load_steps=3 format=3 uid="uid://b57hfvcg6heyk"]
+
+[ext_resource type="FontVariation" uid="uid://w2oic8g7ois" path="res://resources/font.tres" id="1_puuph"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rk8uj"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[resource]
+default_font = ExtResource("1_puuph")
+default_font_size = 16
+Fonts/base_type = &"Fonts"
+Fonts/fonts/large = ExtResource("1_puuph")
+Fonts/fonts/normal = ExtResource("1_puuph")
+Label/colors/font_outline_color = Color(0, 0, 0, 1)
+Label/constants/outline_size = 4
+Label/constants/shadow_offset_x = 0
+Label/constants/shadow_offset_y = 0
+Label/constants/shadow_outline_size = 0
+Label/styles/normal = SubResource("StyleBoxFlat_rk8uj")

@@ -1,0 +1,38 @@
+[gd_scene load_steps=5 format=3 uid="uid://b5fkwsioanryp"]
+
+[ext_resource type="Shader" path="res://shaders/explosion.gdshader" id="1_foms5"]
+[ext_resource type="Script" path="res://Scenes/explosion.gd" id="1_wqebf"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_egcts"]
+render_priority = 0
+shader = ExtResource("1_foms5")
+shader_parameter/texture_speed = Vector2(0, 1)
+shader_parameter/flash_power = 0.769
+shader_parameter/flash_color = Color(0.980392, 1, 0.721569, 1)
+shader_parameter/fire_power = 0.67
+shader_parameter/fire_root_color = Color(0.866667, 0.0156863, 0, 1)
+shader_parameter/fire_tip_color = Color(0.568627, 0.521569, 0.564706, 1)
+shader_parameter/fire_speed = 1.17
+shader_parameter/smoke_power = 0.521
+shader_parameter/smoke_aperture = 0.0
+shader_parameter/smoke_color1 = Color(0.46, 0.46, 0.46, 1)
+shader_parameter/smoke_color2 = Color(0.185, 0.185, 0.185, 1)
+shader_parameter/smoke_speed = 0.0
+
+[sub_resource type="QuadMesh" id="QuadMesh_pxwl7"]
+lightmap_size_hint = Vector2i(7, 7)
+material = SubResource("ShaderMaterial_egcts")
+custom_aabb = AABB(-1.055, -0.705, -0.82, 4.025, 7.075, -12.61)
+add_uv2 = true
+uv2_padding = 2.69
+
+[node name="explosion" type="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+script = ExtResource("1_wqebf")
+
+[node name="Fire" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.473886, -0.878714, 0.0573855, 0.203814, 0.172847, 0.96363, -0.856675, -0.444955, 0.261004, 0, 0, 0)
+gi_mode = 2
+gi_lightmap_scale = 2
+instance_shader_parameters/fire_aperture = 0.826
+mesh = SubResource("QuadMesh_pxwl7")
