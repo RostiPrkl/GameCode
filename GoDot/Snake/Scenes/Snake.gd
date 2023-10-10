@@ -8,6 +8,10 @@ var current_dir = Vector2.RIGHT
 var next_dir = Vector2.RIGHT
 var tween_move: Tween
 
+var hurt_sound = preload("res://Assets/Audio/hurt.wav")
+var grow_sound = preload("res://Assets/Audio/pickUp.wav")
+@onready var audio_stream_player = $AudioStreamPlayer
+
 signal hit(minisnake_hit: Minisnake)
 
 
@@ -58,17 +62,22 @@ func move() -> void:
 	for i in range(1, tail.size()):
 		if head.get_rect().intersects(tail[i].get_rect()):
 			hit.emit(tail[i])
+			Settings.gameover.emit()
 			break
 
 
 func grow() -> void:
 	var minisnake = Minisnake.new()
 	var last_minisnake = tail.back() as Minisnake
-	
+	audio_stream_player.set_stream(grow_sound)
+	audio_stream_player.set_pitch_scale(randf_range(0.8, 1.6))
+	audio_stream_player.play()
 	minisnake.current_pos = last_minisnake.current_pos
 	minisnake.color = Colors.DARK_GREEN
 	minisnake.size = Settings.CELL_SIZE
 	tail.push_back(minisnake)
+	
+	
 	
 	Settings.score += 1
 	print(Settings.score)
@@ -78,6 +87,9 @@ func _on_hit(mini: Minisnake) -> void:
 	tween_move.kill()
 	
 	await get_tree().process_frame
+	
+	audio_stream_player.set_stream(hurt_sound)
+	audio_stream_player.play()
 	
 	for minisnake in tail:
 		minisnake.go_to_previous_pos()

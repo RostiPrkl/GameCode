@@ -1,13 +1,117 @@
-[gd_scene load_steps=7 format=3 uid="uid://b3ts4lkpfagj3"]
+[gd_scene load_steps=11 format=3 uid="uid://b3ts4lkpfagj3"]
 
+[ext_resource type="Shader" path="res://Scenes/crteff.gdshader" id="1_bt4wv"]
+[ext_resource type="FontFile" uid="uid://c1eiocitlemkn" path="res://Assets/Fonts/Jura-Bold.ttf" id="2_hfixp"]
 [ext_resource type="Script" path="res://Scenes/Grid.gd" id="2_ohgo5"]
+[ext_resource type="Script" path="res://Scenes/GameOver.gd" id="3_lvpl2"]
 [ext_resource type="Script" path="res://Scenes/Snake.gd" id="3_rp148"]
 [ext_resource type="Script" path="res://Scenes/Spawner_Food.gd" id="3_xludr"]
 [ext_resource type="Script" path="res://Scenes/Hit_Spot.gd" id="4_2vwqf"]
-[ext_resource type="FontFile" uid="uid://ofav1pwq7fh" path="res://Assets/Fonts/ComingSoon-Regular.ttf" id="5_ewmlg"]
+[ext_resource type="Script" path="res://Scenes/GameStart.gd" id="4_eci0y"]
 [ext_resource type="Script" path="res://Scenes/Score.gd" id="6_whunk"]
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_20h45"]
+shader = ExtResource("1_bt4wv")
+
 [node name="Main" type="Node2D"]
+
+[node name="HUD" type="CanvasLayer" parent="."]
+
+[node name="Score" type="Label" parent="HUD"]
+modulate = Color(0.192157, 0.521569, 0.109804, 1)
+self_modulate = Color(0.203922, 0.792157, 0.121569, 1)
+layout_direction = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -30.0
+offset_top = -34.0
+offset_right = 30.0
+grow_horizontal = 2
+grow_vertical = 0
+rotation = -0.00216813
+scale = Vector2(1, 0.91835)
+size_flags_horizontal = 4
+theme_override_fonts/font = ExtResource("2_hfixp")
+theme_override_font_sizes/font_size = 25
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("6_whunk")
+
+[node name="GameOver" type="Control" parent="HUD"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("3_lvpl2")
+
+[node name="GameOver_Text" type="Label" parent="HUD/GameOver"]
+modulate = Color(0.188235, 1, 0.372549, 1)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -181.0
+offset_top = -16.5
+offset_right = 181.0
+offset_bottom = 16.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("2_hfixp")
+theme_override_font_sizes/font_size = 25
+text = "PRESS ENTER TO PLAY AGAIN"
+
+[node name="GameStart" type="Control" parent="HUD"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("4_eci0y")
+
+[node name="GameStart_Text" type="Label" parent="HUD/GameStart"]
+modulate = Color(0.188235, 1, 0.372549, 1)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -181.0
+offset_top = -16.5
+offset_right = 181.0
+offset_bottom = 16.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("2_hfixp")
+theme_override_font_sizes/font_size = 25
+text = "PRESS ENTER TO START THE GAME"
+
+[node name="Shader-CRT" type="Control" parent="HUD"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="HUD/Shader-CRT"]
+material = SubResource("ShaderMaterial_20h45")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.219608)
 
 [node name="Grid" type="Node2D" parent="."]
 script = ExtResource("2_ohgo5")
@@ -16,34 +120,10 @@ script = ExtResource("2_ohgo5")
 unique_name_in_owner = true
 script = ExtResource("3_rp148")
 
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Snake"]
+
 [node name="Spawner_Food" type="Node2D" parent="."]
 script = ExtResource("3_xludr")
 
 [node name="Hit_Spot" type="Node2D" parent="."]
 script = ExtResource("4_2vwqf")
-
-[node name="HUD" type="CanvasLayer" parent="."]
-
-[node name="Score" type="Label" parent="HUD"]
-layout_direction = 1
-anchors_preset = 3
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -31.0
-offset_top = -36.0
-offset_right = 1.0
-offset_bottom = -8.99997
-grow_horizontal = 0
-grow_vertical = 0
-rotation = 0.437574
-size_flags_horizontal = 4
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("5_ewmlg")
-theme_override_font_sizes/font_size = 15
-text = "0"
-horizontal_alignment = 1
-vertical_alignment = 1
-script = ExtResource("6_whunk")
