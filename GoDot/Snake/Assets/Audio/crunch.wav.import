@@ -3,12 +3,12 @@
 importer="wav"
 type="AudioStreamWAV"
 uid="uid://s8i70cdbxf5b"
-path="res://.godot/imported/crunch.wav-cc51ea59e2d391ed1c53d6013e0c0aef.sample"
+path="res://.godot/imported/crunch.wav-0200e1930dae3e731d141d4dc26b6089.sample"
 
 [deps]
 
-source_file="res://Assets/audio/crunch.wav"
-dest_files=["res://.godot/imported/crunch.wav-cc51ea59e2d391ed1c53d6013e0c0aef.sample"]
+source_file="res://Assets/Audio/crunch.wav"
+dest_files=["res://.godot/imported/crunch.wav-0200e1930dae3e731d141d4dc26b6089.sample"]
 
 [params]
 

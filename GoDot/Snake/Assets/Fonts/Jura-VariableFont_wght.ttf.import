@@ -2,13 +2,13 @@
 
 importer="font_data_dynamic"
 type="FontFile"
-uid="uid://din3p4lhgmq2"
-path="res://.godot/imported/PoetsenOne-Regular.ttf-ff244e52890907fb176d6ba11cb81521.fontdata"
+uid="uid://disyoba74133o"
+path="res://.godot/imported/Jura-VariableFont_wght.ttf-638207dfab82175fb4849fafdfd1ffb4.fontdata"
 
 [deps]
 
-source_file="res://Assets/PoetsenOne-Regular.ttf"
-dest_files=["res://.godot/imported/PoetsenOne-Regular.ttf-ff244e52890907fb176d6ba11cb81521.fontdata"]
+source_file="res://Assets/Fonts/Jura-VariableFont_wght.ttf"
+dest_files=["res://.godot/imported/Jura-VariableFont_wght.ttf-638207dfab82175fb4849fafdfd1ffb4.fontdata"]
 
 [params]
 

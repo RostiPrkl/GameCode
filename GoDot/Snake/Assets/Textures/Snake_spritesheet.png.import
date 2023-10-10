@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://p8o50wapewvc"
-path="res://.godot/imported/grass.png-e0e7f880ae93dbee265d27b69517aa11.ctex"
+uid="uid://cdxw54widtn78"
+path="res://.godot/imported/Snake_spritesheet.png-b21e1ba63e331093f84da774d8bc140d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/textures/grass.png"
-dest_files=["res://.godot/imported/grass.png-e0e7f880ae93dbee265d27b69517aa11.ctex"]
+source_file="res://Assets/Textures/Snake_spritesheet.png"
+dest_files=["res://.godot/imported/Snake_spritesheet.png-b21e1ba63e331093f84da774d8bc140d.ctex"]
 
 [params]
 
