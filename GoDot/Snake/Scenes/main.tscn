@@ -100,21 +100,7 @@ text = "PAUSED"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Grid" parent="." instance=ExtResource("6_d8ixi")]
-
-[node name="Snake" type="Node2D" parent="."]
-unique_name_in_owner = true
-script = ExtResource("3_rp148")
-
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Snake"]
-
-[node name="Spawner_Food" type="Node2D" parent="."]
-script = ExtResource("3_xludr")
-
-[node name="Hit_Spot" type="Node2D" parent="."]
-script = ExtResource("4_2vwqf")
-
-[node name="CRT_Shader" type="Control" parent="."]
+[node name="CRT_Shader" type="Control" parent="HUD"]
 custom_minimum_size = Vector2(800, 0)
 layout_mode = 3
 anchors_preset = 15
@@ -128,7 +114,7 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 size_flags_stretch_ratio = 0.0
 
-[node name="ColorRect" type="ColorRect" parent="CRT_Shader"]
+[node name="ColorRect" type="ColorRect" parent="HUD/CRT_Shader"]
 material = SubResource("ShaderMaterial_gg35q")
 clip_contents = true
 layout_mode = 1
@@ -138,3 +124,17 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 0.14902)
+
+[node name="Grid" parent="." instance=ExtResource("6_d8ixi")]
+
+[node name="Snake" type="Node2D" parent="."]
+unique_name_in_owner = true
+script = ExtResource("3_rp148")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Snake"]
+
+[node name="Spawner_Food" type="Node2D" parent="."]
+script = ExtResource("3_xludr")
+
+[node name="Hit_Spot" type="Node2D" parent="."]
+script = ExtResource("4_2vwqf")

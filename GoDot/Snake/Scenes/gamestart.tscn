@@ -11,7 +11,19 @@ shader = ExtResource("4_ibgbd")
 
 [node name="Grid" parent="." instance=ExtResource("1_suifc")]
 
-[node name="CRT_Shader" type="Control" parent="Grid"]
+[node name="GameStart" parent="." instance=ExtResource("2_ty4su")]
+layout_direction = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -400.0
+offset_top = 240.0
+offset_right = -400.0
+offset_bottom = 240.0
+
+[node name="CRT_Shader" type="Control" parent="."]
 custom_minimum_size = Vector2(800, 0)
 layout_mode = 3
 anchors_preset = 15
@@ -25,7 +37,7 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 size_flags_stretch_ratio = 0.0
 
-[node name="ColorRect" type="ColorRect" parent="Grid/CRT_Shader"]
+[node name="ColorRect" type="ColorRect" parent="CRT_Shader"]
 material = SubResource("ShaderMaterial_23xvw")
 clip_contents = true
 layout_mode = 1
@@ -35,15 +47,3 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 0.14902)
-
-[node name="GameStart" parent="." instance=ExtResource("2_ty4su")]
-layout_direction = 3
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -386.0
-offset_top = 229.0
-offset_right = -386.0
-offset_bottom = 229.0

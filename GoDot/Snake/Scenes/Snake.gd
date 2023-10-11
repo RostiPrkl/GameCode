@@ -18,6 +18,7 @@ func _ready():
 	head.size = Settings.CELL_SIZE
 	head.color = Colors.GREEN
 	tail.push_front(head)
+	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 	
 	hit.connect(_on_hit)
 	
