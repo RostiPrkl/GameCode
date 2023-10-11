@@ -1,5 +1,8 @@
 class_name Snake extends Node2D
 
+@onready var audio_stream_player = $AudioStreamPlayer
+var hurt_sound = preload("res://Assets/Audio/hurt.wav")
+var grow_sound = preload("res://Assets/Audio/pickUp.wav")
 
 var head = Minisnake.new()
 var tail = [] as Array[Minisnake]
@@ -7,10 +10,6 @@ var tail = [] as Array[Minisnake]
 var current_dir = Vector2.RIGHT
 var next_dir = Vector2.RIGHT
 var tween_move: Tween
-
-var hurt_sound = preload("res://Assets/Audio/hurt.wav")
-var grow_sound = preload("res://Assets/Audio/pickUp.wav")
-@onready var audio_stream_player = $AudioStreamPlayer
 
 signal hit(minisnake_hit: Minisnake)
 
@@ -44,12 +43,9 @@ func _input(event):
 		next_dir = Vector2.UP
 	if event.is_action_pressed("move_down") and current_dir != Vector2.UP:
 		next_dir = Vector2.DOWN
-	
-	if event.is_action_pressed("grow"): 
-		grow()
 
 
-func move() -> void:
+func move():
 	current_dir = next_dir
 	var next_pos = head.current_pos + (current_dir * Settings.CELL_SIZE)
 	next_pos.x = fposmod(next_pos.x, Settings.GRID_SIZE.x)
@@ -66,7 +62,7 @@ func move() -> void:
 			break
 
 
-func grow() -> void:
+func grow():
 	var minisnake = Minisnake.new()
 	var last_minisnake = tail.back() as Minisnake
 	audio_stream_player.set_stream(grow_sound)
@@ -77,13 +73,11 @@ func grow() -> void:
 	minisnake.size = Settings.CELL_SIZE
 	tail.push_back(minisnake)
 	
-	
-	
 	Settings.score += 1
 	print(Settings.score)
 
 
-func _on_hit(mini: Minisnake) -> void:
+func _on_hit(mini: Minisnake):
 	tween_move.kill()
 	
 	await get_tree().process_frame

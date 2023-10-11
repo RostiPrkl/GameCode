@@ -2,14 +2,13 @@ extends Label
 
 var tween : Tween
 
+
 func _ready():
 	text = str(" ")
 	
 	Settings.score_changed.connect(_on_score_changed)
 	Settings.gameover.connect(_on_gameover)
 	
-
-
 
 func _process(delta):
 	pass

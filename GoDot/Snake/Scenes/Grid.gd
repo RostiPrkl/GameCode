@@ -1,15 +1,7 @@
 extends Node2D
 
 
-func _ready() -> void:
-	pass
-
-
-func _process(delta) -> void:
-	pass
-	
-
-func _draw() -> void:
+func _draw():
 	draw_rect(Rect2(0,0, Settings.GRID_SIZE.x, Settings.GRID_SIZE.y), Colors.BLACK)
 	
 	for i in Settings.GRID.x:

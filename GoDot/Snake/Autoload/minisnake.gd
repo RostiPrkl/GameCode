@@ -10,10 +10,10 @@ func get_rect() -> Rect2:
 	return Rect2(current_pos, size)
 	
 
-func go_to_previous_pos() -> void:
+func go_to_previous_pos():
 	current_pos = previous_pos
 
 
-func _set_current_pos(new_pos: Vector2) -> void:
+func _set_current_pos(new_pos: Vector2):
 	previous_pos = current_pos
 	current_pos = new_pos

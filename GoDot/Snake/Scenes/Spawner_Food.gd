@@ -1,7 +1,8 @@
 extends Node2D
 
-var food = Food.new()
 @onready var snake = %Snake as Snake
+var food = Food.new()
+
 
 func _ready():
 	spawn_food()
@@ -14,11 +15,12 @@ func _process(delta):
 		snake.grow()
 		spawn_food()	
 
+
 func _draw():
 	draw_rect(food.get_rect(), food.color)
 	
 	
-func spawn_food() -> void:
+func spawn_food():
 	var is_on_occupied = true
 	
 	while is_on_occupied:

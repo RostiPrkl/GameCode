@@ -5,6 +5,7 @@ extends Node2D
 var hit_spot = Rect2(Vector2.ZERO, Settings.CELL_SIZE)
 var hit_color = Color.TRANSPARENT
 
+
 func _ready():
 	snake.hit.connect(_on_snake_hit)
 
