@@ -3,6 +3,7 @@ class_name Snake extends Node2D
 @onready var audio_stream_player = $AudioStreamPlayer
 var hurt_sound = preload("res://Assets/Audio/hurt.wav")
 var grow_sound = preload("res://Assets/Audio/pickUp.wav")
+var start_sound = preload("res://Assets/Audio/start.wav")
 
 var head = Minisnake.new()
 var tail = [] as Array[Minisnake]
@@ -18,6 +19,9 @@ func _ready():
 	head.size = Settings.CELL_SIZE
 	head.color = Colors.GREEN
 	tail.push_front(head)
+	
+	audio_stream_player.set_stream(start_sound)
+	audio_stream_player.play()
 	
 	hit.connect(_on_hit)
 	

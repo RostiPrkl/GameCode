@@ -3,11 +3,9 @@ extends Control
 
 func _ready():
 	show()
-	get_tree().set_pause(true)
 	while !Input.is_action_pressed("start"): await get_tree().process_frame
 	hide()
-	get_tree().set_pause(false)
+	get_tree().change_scene_to_file("res://Scenes/main.tscn")
 
-
-func _process(delta):
+func _on_play_button_pressed():
 	pass
