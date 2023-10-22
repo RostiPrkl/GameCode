@@ -1,0 +1,69 @@
+ma-pe 1-5.5.2013
+1. Animaatioden luomista, scriptien luomista, ansat. Liikkeiden hallintaa.
+    - Statemachine DONE
+    - main game loop DONE
+    - camera DONE
+    - Parallax Background DONE
+    - Player Script DONE
+    - Trap script DONE
+2. placeholder? -Taustat luotu parallaxina DONE
+3. love-pong sivutyönä DONE
+4. double jump DONE, Ledge climb DONE, Slide DONE
+
+
+ma-pe. 8-12.5.2023
+1. UI -aloitus
+    - Main menu
+    - pause menu
+    - in game UI
+2. Animaatioiden hiomista (climb, roll) DONE
+3. Kameran liikkeen parantelua DONE
+4. Level generator DONE, Coin Generator DONE, Trap Generator DONE, ensimmäiset 3 tasoa DONE
+    - level header color script DONE
+    - Player Death DONE
+
+ma-pe. 15-19.5.2023
+1. Audiopuoli haltuun
+2. UI toimivaksi (napeille scriptit yms)
+    - Settings UI
+    - Shop UI
+    - MUTE Button
+    - Pause, Start, Quit -napit
+    - Health bar
+3. Brikazoid -sivuprojekti
+
+ma-pe 22-26.5
+1. Asset storen selausta
+2. UI -viilausta
+3. Brikazoid -projektin jatkoa
+
+ma-pe 29.5-2.6
+1. Audioassettien etsintää
+2. Sadeassettien etsintää ja implementointia
+3. Slick-toiminto (sateella märkä maa, luistaa eri tavavalla)
+
+ma-pe 5-9.6
+1. Uusi sivuprojekti suunnittelu (esiasteen esiaste)
+    -Portal -tyylisen pelin mietiskelyä
+    -Prototyyppi pelille
+
+ma-pe 12-16.6
+1. portal peli Doors aloitus
+    -toimivat portaalit peliin
+    -testikenttä 3d-maailmassa unityssä
+
+Tehtävää:
+endless runner:
+- myöhemmin ainakin lisätä jonkinlaista valohärpäkkää aurinkoon, (lens flare?) ei kiire
+- UI -hiomista.
+- parempi kiipeämisanimaatio myöh, ei kiire
+- levelit paremmiksi, enemmän niitä
+- climb -animaatio bugi, kiipeää minne sattuu välillä SELVITÄ!
+- siivoa (scriptit omaan kansioon, anim. omaan yms.)
+- asset store? (dark UI)
+- Ad for life?
+- Slide speed omituinen, SELVITÄ
+portal:
+-kamerabugi KORJAA
+-Mahdollisuus kulkea portaalien läpi, nyt voi vain katsoa
+

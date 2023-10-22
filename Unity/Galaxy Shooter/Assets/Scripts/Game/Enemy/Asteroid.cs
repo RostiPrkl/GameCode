@@ -15,6 +15,7 @@ public class Asteroid : MonoBehaviour
     [SerializeField] private float _minYPosition = -10.2f;
     
     [SerializeField] private GameObject _expolsionPrefab;
+    
 
 
     void Start()
