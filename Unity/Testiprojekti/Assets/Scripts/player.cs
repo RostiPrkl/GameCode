@@ -116,7 +116,6 @@ public class player : MonoBehaviour
             GUI.Label(new Rect(10, 90, 200, 50), "High Point " + highPoint, myStyle);
             GUI.Label(new Rect(10, 110, 200, 50), "Going Down " + goingDown, myStyle);
         }
-
     }
 
 
