@@ -8,9 +8,8 @@ public class Player : Entity
     [Header("Attack details")]
     public Vector2[] attackMovement;
     public float counterAttackDuration = 0.2f;
-    
-
     public bool isBusy { get; private set; }
+
     [Header("Move info")]
     public float moveSpeed = 12f;
     public float jumpForce;
