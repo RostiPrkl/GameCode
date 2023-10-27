@@ -15,7 +15,6 @@ public class Player : MonoBehaviour
 
     Animator animator;
     Rigidbody2D rb;
-    Component groundCheck;
 
 
 
@@ -24,8 +23,6 @@ public class Player : MonoBehaviour
     {
         animator = GetComponent<Animator>();   
         rb = GetComponent<Rigidbody2D>();
-        groundCheck = GetComponent<Component>();
-
     }
 
 
@@ -45,7 +42,7 @@ public class Player : MonoBehaviour
         }
 
 
-        if (Input.GetButtonDown("Jump"))
+        if (Input.GetButtonDown("Jump") && grounded == true)
         {
             rb.velocity = new Vector2(rb.velocity.x, jumpForce);
             animator.SetBool("Jump", true);
@@ -59,8 +56,8 @@ public class Player : MonoBehaviour
 
     void GroundDetect()
     {
-        Vector3 checkPosition = groundCheck.transform.position;
-        RaycastHit2D casthit = Physics2D.BoxCast(checkPosition, new Vector2(1.3f, 0.2f), 0, Vector2.zero, LayerMask.GetMask("Ground"));
+        Vector3 checkPosition = transform.position;
+        RaycastHit2D casthit = Physics2D.BoxCast(checkPosition, new Vector2(1.3f, 0.2f), 0, Vector2.zero, 0, LayerMask.GetMask("Ground"));
 
         if (casthit == true && rb.velocity.y <= 0)
         {
@@ -69,5 +66,19 @@ public class Player : MonoBehaviour
         }
         else
             grounded = false;
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Goomba"))
+        {
+            if (transform.position.y > collision.transform.position.y + collision.transform.localScale.y / 2)
+            {
+                collision.gameObject.GetComponent<EnemyGoombaVariation>().Death();
+                rb.velocity = new Vector2(rb.velocity.x, jumpForce * 0.4f);
+            }
+        }
+        else
+            Debug.Log("MARIO KUOLI");
     }
 }
