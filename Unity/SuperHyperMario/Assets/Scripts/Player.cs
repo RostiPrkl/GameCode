@@ -81,6 +81,7 @@ public class Player : MonoBehaviour
     {
         facingDir = !facingDir;
         transform.Rotate(0,180,0);
+        currentMoveSpeed = initialMoveSpeed;
     }
 
 
