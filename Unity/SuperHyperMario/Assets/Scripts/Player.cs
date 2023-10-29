@@ -7,14 +7,23 @@ public class Player : MonoBehaviour
     [Header("Move Info")]
     [SerializeField] float initialMoveSpeed = 5f;
     [SerializeField] float maxMoveSpeed = 10f;
-    [SerializeField] float acceleration = 2f;
-    float currentMoveSpeed; 
+    [SerializeField] float acceleration = 2f; 
+    [SerializeField] float currentMoveSpeed;
+    float xInput; 
+    bool facingDir = true;
     
     [Header("Jump Info")]
     [SerializeField] float jumpForce = 15;
     [SerializeField] float fallMultiplier = 5f;
     [SerializeField] float lowJumpMultiplier = 6;
-    bool grounded;
+    [SerializeField] float coyoteTime = 0.2f;
+    float coyoteTimeCounter;
+    
+
+    [Header("Collision Check")]
+    [SerializeField] float groundCheckRadius;
+    bool isGrounded = true;
+    bool groundCheck;
 
     Animator animator;
     Rigidbody2D rb;
@@ -29,63 +38,99 @@ public class Player : MonoBehaviour
 
     void Update()
     {
-        GroundDetect();
+        xInput = Input.GetAxisRaw("Horizontal");
+
         Movement();
-        Jump();
+        FlipController();
+        CoyoteTimer();
+        if (Input.GetButtonDown("Jump"))
+            Jump();
+        CollisionCheck();
+        if (!isGrounded)
+            JumpMultiPlier();
     }
 
 
     void Movement()
     {
-        float moveInput = Input.GetAxis("Horizontal");
-    
-        if (moveInput != 0)
-            currentMoveSpeed = Mathf.MoveTowards(currentMoveSpeed, maxMoveSpeed, acceleration * Time.deltaTime);
+        
+        if (rb.velocity.x != 0)
+                currentMoveSpeed = Mathf.MoveTowards(currentMoveSpeed, maxMoveSpeed, acceleration * Time.deltaTime);
         else
-            currentMoveSpeed = initialMoveSpeed;
+                currentMoveSpeed = initialMoveSpeed;
 
-        float movement = moveInput * currentMoveSpeed * Time.deltaTime;
-        transform.Translate(movement, 0, 0);
+        rb.velocity = new Vector2(xInput * currentMoveSpeed, rb.velocity.y);
 
-        if (Input.GetAxisRaw("Horizontal") != 0)
-        {
-            transform.localScale = new Vector3(Input.GetAxisRaw("Horizontal"), 1, 1);
+        if (xInput == 0)
+            animator.SetBool("Walk", false);
+        else
             animator.SetBool("Walk", true);
+    }
+
+
+    void FlipController()
+    {
+        if (rb.velocity.x < 0 && facingDir)
+            Flip();
+        else if (rb.velocity.x > 0 && !facingDir)
+            Flip();
+    }
+
+
+    void Flip()
+    {
+        facingDir = !facingDir;
+        transform.Rotate(0,180,0);
+    }
+
+
+    void CollisionCheck()
+    {
+        groundCheck = Physics2D.OverlapCircle(transform.position, groundCheckRadius, LayerMask.GetMask("Ground"));
+        if (groundCheck == true && (rb.velocity.y <= 0.2 && rb.velocity.y >-0.2))
+        {
+            isGrounded = true;
+            animator.SetBool("Jump", false);
         }
         else
-            animator.SetBool("Walk", false);
+            isGrounded = false;
     }
 
 
     void Jump()
     {
-        if (Input.GetButtonDown("Jump") && grounded == true)
+        if (coyoteTimeCounter > 0f)
         {
             rb.velocity = new Vector2(rb.velocity.x, jumpForce);
             animator.SetBool("Jump", true);
         }
+        if (Input.GetButtonUp("Jump"))
+            coyoteTimeCounter = 0f;   
+    }
 
-        if (rb.velocity.y < 0)
+
+    void JumpMultiPlier()
+    {
+        if (rb.velocity.y < 0f)
             rb.velocity += Vector2.up * Physics.gravity.y * (fallMultiplier - 1) * Time.deltaTime;
-        else if (rb.velocity.y > 0 && !Input.GetButton("Jump"))
+        else if (rb.velocity.y > 0f && !Input.GetButton("Jump"))
             rb.velocity += Vector2.up * Physics2D.gravity.y * (lowJumpMultiplier - 1) * Time.deltaTime;
     }
 
 
-    void GroundDetect()
+    void CoyoteTimer()
     {
-        Vector3 checkPosition = transform.position;
-        Vector2 boxSize = new Vector2(1.3f, 0.5f);
-        RaycastHit2D casthit = Physics2D.BoxCast(checkPosition, boxSize, 0, Vector2.zero, 0, LayerMask.GetMask("Ground"));
-
-        if (casthit == true && (rb.velocity.y <= 0.2 && rb.velocity.y >-0.2))
-        {
-            grounded = true;
-            animator.SetBool("Jump", false);
-        }
+        if (isGrounded)
+            coyoteTimeCounter = coyoteTime;
         else
-            grounded = false;
-            //Debug.Log(rb.velocity.y);
+            coyoteTimeCounter -= Time.deltaTime;
+
+    }
+
+
+    void OnDrawGizmos()
+    {
+        Gizmos.DrawWireSphere(transform.position, groundCheckRadius);
     }
 
 
@@ -96,7 +141,7 @@ public class Player : MonoBehaviour
             if (transform.position.y > collision.transform.position.y + collision.transform.localScale.y / 2)
             {
                 collision.gameObject.GetComponent<EnemyGoombaVariation>().Death();
-                rb.velocity = new Vector2(rb.velocity.x, jumpForce * 0.8f);
+                rb.velocity = new Vector2(rb.velocity.x, jumpForce * 1.5f);
             }
         }
     }
