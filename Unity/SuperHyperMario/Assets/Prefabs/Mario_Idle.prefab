@@ -121,7 +121,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.0030777454, y: 0.4979484}
+  m_Offset: {x: -0.0020942688, y: 0.5019543}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0}
@@ -132,7 +132,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.8309655, y: 1.024621}
+  m_Size: {x: 0.77437496, y: 0.98449373}
   m_EdgeRadius: 0
 --- !u!50 &1000816757594049668
 Rigidbody2D:
@@ -146,10 +146,10 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 1.5
   m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_AngularDrag: 0
+  m_GravityScale: 2
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -159,7 +159,7 @@ Rigidbody2D:
     m_Bits: 0
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 4
 --- !u!95 &1440481712969001459
 Animator:
@@ -194,11 +194,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 714728620a640bf4782cf1cc46f5cae1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 10
-  jumpForce: 8
-  fallMultiplier: 3
-  lowJumpMultiplier: 7
-  grounded: 1
+  initialMoveSpeed: 6
+  maxMoveSpeed: 13
+  acceleration: 2
+  jumpForce: 15
+  fallMultiplier: 5
+  lowJumpMultiplier: 6
 --- !u!1 &7472664744220862666
 GameObject:
   m_ObjectHideFlags: 0
@@ -209,7 +210,7 @@ GameObject:
   m_Component:
   - component: {fileID: 70169559473131347}
   - component: {fileID: 8386975943385544849}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Virtual Camera
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -225,7 +226,7 @@ Transform:
   m_GameObject: {fileID: 7472664744220862666}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 4.8775105, y: 4.1876006, z: -10}
+  m_LocalPosition: {x: 4.8790817, y: 3.7543993, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -332,21 +333,21 @@ MonoBehaviour:
   m_LookaheadTime: 0
   m_LookaheadSmoothing: 0
   m_LookaheadIgnoreY: 0
-  m_XDamping: 1
-  m_YDamping: 1.4
-  m_ZDamping: 1
+  m_XDamping: 2
+  m_YDamping: 0.2
+  m_ZDamping: 0
   m_TargetMovementOnly: 1
   m_ScreenX: 0.31
-  m_ScreenY: 0.7900001
+  m_ScreenY: 0.76
   m_CameraDistance: 10
   m_DeadZoneWidth: 0.21
-  m_DeadZoneHeight: 0.19
+  m_DeadZoneHeight: 0.08
   m_DeadZoneDepth: 0
   m_UnlimitedSoftZone: 0
-  m_SoftZoneWidth: 0.35
-  m_SoftZoneHeight: 0.61
-  m_BiasX: 0.329
-  m_BiasY: -0.446
+  m_SoftZoneWidth: 0.37
+  m_SoftZoneHeight: 0.51
+  m_BiasX: 0.2
+  m_BiasY: -0.18
   m_CenterOnActivate: 1
   m_GroupFramingMode: 2
   m_AdjustmentMode: 0

@@ -9,6 +9,7 @@ public class EnemyGoombaVariation : MonoBehaviour
     [SerializeField] int direction;
     [SerializeField] LayerMask groundLayer;
     [SerializeField] GameObject detectionPoint;
+    
     Animator animator;
 
     // Start is called before the first frame update
@@ -30,17 +31,13 @@ public class EnemyGoombaVariation : MonoBehaviour
         RaycastHit2D hit = Physics2D.Raycast(detectionPoint.transform.position, Vector2.down, 1, groundLayer);
 
         if (hit.collider == null)
-        {
             Direction();
-        }
 
         Debug.DrawRay(detectionPoint.transform.position, Vector2.right, Color.red);
         RaycastHit2D hit2 = Physics2D.Raycast(detectionPoint.transform.position, Vector2.right, 0.5f, groundLayer);
 
         if (hit2.collider != null)
-        {
             Direction();
-        }
     }
 
     void Direction()
@@ -52,6 +49,8 @@ public class EnemyGoombaVariation : MonoBehaviour
     {
         animator.SetTrigger("Death");
         moveSpeed = 0;
-        Destroy(transform.root.gameObject, 2);
+        Destroy(gameObject.GetComponent<Rigidbody2D>());
+        Destroy(gameObject.GetComponent<BoxCollider2D>());
+        Destroy(transform.root.gameObject, 1.5f);
     }
 }
