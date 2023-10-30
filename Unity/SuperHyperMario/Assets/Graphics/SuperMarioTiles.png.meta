@@ -1181,7 +1181,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: SuperMarioTiles_51
+      name: Hammer_01
       rect:
         serializedVersion: 2
         x: 270
@@ -1265,7 +1265,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: SuperMarioTiles_55
+      name: Hammer_02
       rect:
         serializedVersion: 2
         x: 275
@@ -1307,7 +1307,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: SuperMarioTiles_57
+      name: Hammer_03
       rect:
         serializedVersion: 2
         x: 269
@@ -1412,7 +1412,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: SuperMarioTiles_62
+      name: Hammer_04
       rect:
         serializedVersion: 2
         x: 274
@@ -1433,15 +1433,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: SuperMarioTiles_63
+      name: HammerBro_Walk_01
       rect:
         serializedVersion: 2
         x: 306
         y: 274
-        width: 15
+        width: 16
         height: 24
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1454,15 +1454,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: SuperMarioTiles_64
+      name: HammerBro_Walk_02
       rect:
         serializedVersion: 2
         x: 326
         y: 274
         width: 16
         height: 24
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1475,15 +1475,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: SuperMarioTiles_65
+      name: HammerBro_Attack
       rect:
         serializedVersion: 2
         x: 348
         y: 274
         width: 16
         height: 24
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -2018,6 +2018,13 @@ TextureImporter:
       Goomba_Walk_01: 75029906
       Goomba_Walk_02: 167067787
       Ground: -2111440967
+      HammerBro_Attack: -1825059109
+      HammerBro_Walk_01: -1876791110
+      HammerBro_Walk_02: 1118798224
+      Hammer_01: -1260853587
+      Hammer_02: -1196476583
+      Hammer_03: -1226340813
+      Hammer_04: 695439887
       Item_01: 584937674
       Item_02: -1574758635
       Mario_Death: -1338714286
@@ -2059,21 +2066,14 @@ TextureImporter:
       SuperMarioTiles_47: 517218033
       SuperMarioTiles_48: 1579656765
       SuperMarioTiles_49: 197299771
-      SuperMarioTiles_51: -1260853587
       SuperMarioTiles_52: 1870886266
       SuperMarioTiles_53: 303679069
       SuperMarioTiles_54: 815045835
-      SuperMarioTiles_55: -1196476583
       SuperMarioTiles_56: 1644233564
-      SuperMarioTiles_57: -1226340813
       SuperMarioTiles_58: 1316879147
       SuperMarioTiles_59: 1709395203
       SuperMarioTiles_60: 390108633
       SuperMarioTiles_61: 1605823817
-      SuperMarioTiles_62: 695439887
-      SuperMarioTiles_63: -1876791110
-      SuperMarioTiles_64: 1118798224
-      SuperMarioTiles_65: -1825059109
       SuperMarioTiles_66: -905723069
       SuperMarioTiles_67: 1720845993
       SuperMarioTiles_68: -1996182927

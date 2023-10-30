@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
@@ -144,6 +145,60 @@ public class Player : MonoBehaviour
                 collision.gameObject.GetComponent<EnemyGoombaVariation>().Death();
                 rb.velocity = new Vector2(rb.velocity.x, jumpForce * 1.5f);
             }
+            else
+            {
+                PlayerDeath();
+            }
         }
+
+        if (collision.gameObject.CompareTag("HammerBro"))
+        {
+            if (transform.position.y > collision.transform.position.y)
+            {
+                collision.gameObject.GetComponent<HammerBro>().Death();
+                rb.velocity = new Vector2(rb.velocity.x, jumpForce * 1.5f);
+            }
+            else
+            {
+                PlayerDeath();
+            }
+        }
+    }
+
+
+    //private void OnTriggerEnter2D(Collider2D collision)
+    //{
+    //    if (collision.gameObject.CompareTag("FallDeath") || collision.gameObject.CompareTag("Hammer"))
+    //    {
+    //        PlayerDeath();
+    //    }
+    //}
+
+
+    public void PlayerDeath()
+    {
+        animator.SetTrigger("Death");
+        rb.velocity = new Vector2(rb.velocity.x, 34.0f);
+        Destroy(GetComponent<BoxCollider2D>());
+        currentMoveSpeed = 0;
+        Destroy(gameObject, 4);
+        StartCoroutine("ContinueTime");
+        Time.timeScale = 0f;
+        gameObject.transform.GetChild(0).SetParent(null);
+    }
+
+
+    IEnumerator ContinueTime()
+    {
+        yield return new WaitForSecondsRealtime(2);
+        Time.timeScale = 1;
+        yield return new WaitForSecondsRealtime(4);
+        RestartLevel();
+    }
+
+
+    void RestartLevel()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 }

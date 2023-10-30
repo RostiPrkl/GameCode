@@ -53,4 +53,6 @@ public class EnemyGoombaVariation : MonoBehaviour
         Destroy(gameObject.GetComponent<BoxCollider2D>());
         Destroy(transform.root.gameObject, 1.5f);
     }
+
+
 }
