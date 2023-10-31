@@ -39,10 +39,13 @@ public class HammerBro : MonoBehaviour
 
     void Update()
     {
-        if (transform.position.x < player.transform.position.x)
-            transform.localScale = new Vector3(-1, 1, 1);
-        else
-            transform.localScale = new Vector3(1, 1, 1);
+        if (player != null)
+        {  
+            if (transform.position.x < player.transform.position.x)
+                transform.localScale = new Vector3(-1, 1, 1);
+            else if (transform.position.x > player.transform.position.x)
+                transform.localScale = new Vector3(1, 1, 1);
+        }
 
         transform.position = Vector3.MoveTowards(transform.position, movePoint[i].position, speed * Time.deltaTime);
 
@@ -84,7 +87,7 @@ public class HammerBro : MonoBehaviour
     public void Attack()
     {
         animator.SetTrigger("Attack");
-        GameObject hammerInstance = Instantiate(hammer, transform.position + new Vector3(0,1,0), Quaternion.identity);
+        GameObject hammerInstance = Instantiate(hammer, transform.position, Quaternion.identity);
         Vector2 throwDirection = new Vector2(hammerForce * -transform.localScale.x, hammerForce);
         hammerInstance.GetComponent<Rigidbody2D>().AddForce(throwDirection, ForceMode2D.Impulse);
         Destroy(hammerInstance, 3);
@@ -93,10 +96,11 @@ public class HammerBro : MonoBehaviour
 
     public void Death()
     {
-        SpriteRenderer sprite = gameObject.GetComponent<SpriteRenderer>();
+        animator.SetTrigger("Attack");
         speed = 0;
+        SpriteRenderer sprite = gameObject.GetComponent<SpriteRenderer>();
         sprite.flipY = true;
-        rb.velocity = new Vector2(-1, 6);
+        rb.velocity = new Vector2(rb.velocity.x, 6);
         hammerMaxCounter = 1000;
         jumpMaxCounter = 1000;
         Destroy(gameObject.GetComponent<BoxCollider2D>());

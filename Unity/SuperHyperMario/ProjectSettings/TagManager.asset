@@ -8,6 +8,8 @@ TagManager:
   - HammerBro
   - FallDeath
   - Hammer
+  - Bullet
+  - Enemy
   layers:
   - Default
   - TransparentFX

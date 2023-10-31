@@ -12,6 +12,7 @@ public class Player : MonoBehaviour
     [SerializeField] float currentMoveSpeed;
     float xInput; 
     bool facingDir = true;
+    bool canMove = true;
     
     [Header("Jump Info")]
     [SerializeField] float jumpForce = 15;
@@ -39,11 +40,13 @@ public class Player : MonoBehaviour
 
     void Update()
     {
-        xInput = Input.GetAxisRaw("Horizontal");
+        if (canMove)
+            xInput = Input.GetAxisRaw("Horizontal");
 
         Movement();
         FlipController();
         CoyoteTimer();
+
         if (Input.GetButtonDown("Jump"))
             Jump();
         CollisionCheck();
@@ -89,7 +92,7 @@ public class Player : MonoBehaviour
     void CollisionCheck()
     {
         groundCheck = Physics2D.OverlapCircle(transform.position, groundCheckRadius, LayerMask.GetMask("Ground"));
-        if (groundCheck == true && (rb.velocity.y <= 0.2 && rb.velocity.y >-0.2))
+        if (groundCheck == true && (rb.velocity.y <= 0.4 && rb.velocity.y >-0.4))
         {
             isGrounded = true;
             animator.SetBool("Jump", false);
@@ -163,41 +166,52 @@ public class Player : MonoBehaviour
                 PlayerDeath();
             }
         }
+
+        if (collision.gameObject.CompareTag("Bullet"))
+        {
+            if (transform.position.y > collision.transform.position.y)
+            {
+                if (GameObject.Find("BulletBill") != null)
+                {
+                    collision.gameObject.GetComponent<Bullet>().Death();
+                    rb.velocity = new Vector2(rb.velocity.x, jumpForce * 2f);
+                }
+            }
+            else
+            {
+                PlayerDeath();
+            }
+        }
     }
 
 
-    //private void OnTriggerEnter2D(Collider2D collision)
-    //{
-    //    if (collision.gameObject.CompareTag("FallDeath") || collision.gameObject.CompareTag("Hammer"))
-    //    {
-    //        PlayerDeath();
-    //    }
-    //}
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+       if (collision.gameObject.CompareTag("FallDeath") || collision.gameObject.CompareTag("Hammer"))
+       {
+           PlayerDeath();
+       }
+    }
 
 
     public void PlayerDeath()
     {
+        canMove = false;
         animator.SetTrigger("Death");
-        rb.velocity = new Vector2(rb.velocity.x, 34.0f);
-        Destroy(GetComponent<BoxCollider2D>());
+        rb.velocity = new Vector2(0f, 54.0f); 
         currentMoveSpeed = 0;
-        Destroy(gameObject, 4);
-        StartCoroutine("ContinueTime");
-        Time.timeScale = 0f;
-        gameObject.transform.GetChild(0).SetParent(null);
+        gameObject.GetComponent<CapsuleCollider2D>().enabled = false;
+        StartCoroutine(RespawnAfterDelay(1f));
     }
 
-
-    IEnumerator ContinueTime()
+    private IEnumerator RespawnAfterDelay(float delay)
     {
-        yield return new WaitForSecondsRealtime(2);
-        Time.timeScale = 1;
-        yield return new WaitForSecondsRealtime(4);
-        RestartLevel();
+        yield return new WaitForSecondsRealtime(delay);
+        gameObject.GetComponent<CapsuleCollider2D>().enabled = true;
+        RespawnPlayer();
     }
 
-
-    void RestartLevel()
+    private void RespawnPlayer()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }

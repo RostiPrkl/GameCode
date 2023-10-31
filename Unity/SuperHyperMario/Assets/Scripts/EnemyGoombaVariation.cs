@@ -50,7 +50,7 @@ public class EnemyGoombaVariation : MonoBehaviour
         animator.SetTrigger("Death");
         moveSpeed = 0;
         Destroy(gameObject.GetComponent<Rigidbody2D>());
-        Destroy(gameObject.GetComponent<BoxCollider2D>());
+        Destroy(gameObject.GetComponent<CircleCollider2D>());
         Destroy(transform.root.gameObject, 1.5f);
     }
 

@@ -1244,7 +1244,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: SuperMarioTiles_54
+      name: Cannon_Top
       rect:
         serializedVersion: 2
         x: 419
@@ -1286,7 +1286,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: SuperMarioTiles_56
+      name: Cannon_Bottom
       rect:
         serializedVersion: 2
         x: 419
@@ -1328,7 +1328,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: SuperMarioTiles_58
+      name: Cannon_Extension
       rect:
         serializedVersion: 2
         x: 419
@@ -1440,8 +1440,8 @@ TextureImporter:
         y: 274
         width: 16
         height: 24
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1461,8 +1461,8 @@ TextureImporter:
         y: 274
         width: 16
         height: 24
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1482,8 +1482,8 @@ TextureImporter:
         y: 274
         width: 16
         height: 24
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1496,7 +1496,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: SuperMarioTiles_66
+      name: Bullet_Death
       rect:
         serializedVersion: 2
         x: 401
@@ -1517,7 +1517,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: SuperMarioTiles_67
+      name: Bullet
       rect:
         serializedVersion: 2
         x: 401
@@ -2012,6 +2012,11 @@ TextureImporter:
     nameFileIdTable:
       Brick_01: 429330592
       Brick_02: -1330768329
+      Bullet: 1720845993
+      Bullet_Death: -905723069
+      Cannon_Bottom: 1644233564
+      Cannon_Extension: 1316879147
+      Cannon_Top: 815045835
       Empty_01: 1996176254
       Empty_02: 367025398
       Goomba_Die: -1707442349
@@ -2068,14 +2073,9 @@ TextureImporter:
       SuperMarioTiles_49: 197299771
       SuperMarioTiles_52: 1870886266
       SuperMarioTiles_53: 303679069
-      SuperMarioTiles_54: 815045835
-      SuperMarioTiles_56: 1644233564
-      SuperMarioTiles_58: 1316879147
       SuperMarioTiles_59: 1709395203
       SuperMarioTiles_60: 390108633
       SuperMarioTiles_61: 1605823817
-      SuperMarioTiles_66: -905723069
-      SuperMarioTiles_67: 1720845993
       SuperMarioTiles_68: -1996182927
       SuperMarioTiles_69: 1598370075
       SuperMarioTiles_70: 1396982372
