@@ -21,7 +21,6 @@ public class Player : MonoBehaviour
     [SerializeField] float coyoteTime = 0.2f;
     float coyoteTimeCounter;
     
-
     [Header("Collision Check")]
     [SerializeField] float groundCheckRadius;
     bool isGrounded = true;
