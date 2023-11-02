@@ -5,12 +5,9 @@ using UnityEngine;
 public class EnemyTrackingState : IEnemyState
 {
     private EnemyStateMachine enemy;
-    
 
-    public EnemyTrackingState(EnemyStateMachine enemystateMachine)
-    {
-        enemy = enemystateMachine;
-    }
+
+    public EnemyTrackingState(EnemyStateMachine enemystateMachine) => enemy = enemystateMachine;
 
 
     public void UpdateState()
@@ -27,22 +24,13 @@ public class EnemyTrackingState : IEnemyState
     }
 
 
-    public void ToPatrolState()
-    {
-        enemy.currentState = enemy.patrolState;
-    }
+    public void ToPatrolState() => enemy.currentState = enemy.patrolState;
 
 
-    public void ToAlertState()
-    {
-        enemy.currentState = enemy.alertState;
-    }
+    public void ToAlertState() => enemy.currentState = enemy.alertState;
 
 
-    public void ToChaseState()
-    {
-        enemy.currentState = enemy.chaseState;
-    }
+    public void ToChaseState() => enemy.currentState = enemy.chaseState;
 
 
     public void ToTrackingState()
@@ -53,12 +41,24 @@ public class EnemyTrackingState : IEnemyState
 
     void Look()
     {
-        Debug.DrawRay(enemy.eye.position, enemy.eye.forward * enemy.sightRange, Color.blue);
-        RaycastHit hit;
-        if(Physics.Raycast(enemy.eye.position, enemy.eye.forward, out hit, enemy.sightRange) && hit.collider.CompareTag("Player"))
+        Collider[] targetsInViewRadius = Physics.OverlapSphere(enemy.transform.position, enemy.sightRadius, enemy.targetMask);
+
+        for (int i = 0; i < targetsInViewRadius.Length; i++)
         {
-            enemy.chaseTarget = hit.transform;
-            ToAlertState();
+            if (targetsInViewRadius[i].CompareTag("Player"))
+            {
+                Transform target = targetsInViewRadius[i].transform;
+                Vector3 dirToTarget = (target.position - enemy.transform.position).normalized;
+                if (Vector3.Angle(enemy.transform.forward, dirToTarget) < enemy.sightAngle)
+                {
+                    float dstToTarget = Vector3.Distance(enemy.transform.position, target.position);
+                    if (!Physics.Raycast(enemy.transform.position, dirToTarget, dstToTarget, enemy.obstacleMask))
+                    {
+                        enemy.chaseTarget = target;
+                        ToAlertState();
+                    }
+                }
+            }
         }
     }
 

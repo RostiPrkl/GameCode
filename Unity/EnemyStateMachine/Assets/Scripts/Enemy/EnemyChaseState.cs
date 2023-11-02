@@ -1,15 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class EnemyChaseState : IEnemyState
 {
     private EnemyStateMachine enemy;
 
-    public EnemyChaseState(EnemyStateMachine enemystateMachine)
-    {
-        enemy = enemystateMachine;
-    }
+    public EnemyChaseState(EnemyStateMachine enemystateMachine) => enemy = enemystateMachine;
 
     public void UpdateState()
     {
@@ -24,31 +22,23 @@ public class EnemyChaseState : IEnemyState
     }
 
 
-    public void ToPatrolState()
-    {
-        enemy.currentState = enemy.patrolState;
-    }
+    public void ToPatrolState() => enemy.currentState = enemy.patrolState;
 
 
-    public void ToAlertState()
-    {
-        enemy.currentState = enemy.alertState;
-    }
+    public void ToAlertState() => enemy.currentState = enemy.alertState;
 
 
-    public void ToChaseState()
+    public void ToTrackingState() => enemy.currentState = enemy.trackingState;
+
+
+    public void ToChaseState()    
     {
 
-    }
-
-
-    public void ToTrackingState()
-    {
-        enemy.currentState = enemy.trackingState;
     }
 
 
     void Chase()
+
     {
         enemy.indicator.material.color = Color.red;
         enemy.navMeshAgent.destination = enemy.chaseTarget.position;
@@ -66,8 +56,9 @@ public class EnemyChaseState : IEnemyState
             enemy.chaseTarget = hit.transform;
         else
         {
-            enemy.lastKnownPlayerPosition = enemy.chaseTarget.position;
+            enemy.lastKnownPlayerPosition = enemy.chaseTarget.position + new Vector3(0, 0, 5);
             ToTrackingState();
         }
     }
+
 }

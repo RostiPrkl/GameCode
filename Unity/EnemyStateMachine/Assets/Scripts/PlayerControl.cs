@@ -5,12 +5,12 @@ using UnityEngine;
 public class PlayerControl : MonoBehaviour
 {
     float moveSpeed = 5;
-    float rotateSpeed = 200;
+    float rotateSpeed = 600;
 
 
     void Start()
     {
-        
+        Cursor.lockState = CursorLockMode.Locked;
     }
 
     
@@ -23,5 +23,8 @@ public class PlayerControl : MonoBehaviour
         float mouseInput = Input.GetAxis("Mouse X") * rotateSpeed * Time.deltaTime;
         Vector3 lookHere = new Vector3(0, mouseInput, 0);
         transform.Rotate(lookHere);
+
+        if (Input.GetKey(KeyCode.Space))
+            Cursor.lockState = CursorLockMode.None;
     }
 }

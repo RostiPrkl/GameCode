@@ -6,12 +6,9 @@ public class EnemyPatrolState : IEnemyState
 {
  
     private EnemyStateMachine enemy;
-    int nextWaypoint; 
+    int nextWaypoint;
 
-    public EnemyPatrolState(EnemyStateMachine enemystateMachine)
-    {
-        enemy = enemystateMachine;
-    }
+    public EnemyPatrolState(EnemyStateMachine enemystateMachine) => enemy = enemystateMachine;
 
     public void UpdateState()
     {
@@ -34,34 +31,38 @@ public class EnemyPatrolState : IEnemyState
     }
 
 
-    public void ToAlertState()
-    {
-        enemy.currentState = enemy.alertState;
-    }
+    public void ToAlertState() => enemy.currentState = enemy.alertState;
 
 
-    public void ToChaseState()
-    {
-
-    }
+    public void ToChaseState() => enemy.currentState = enemy.chaseState;
 
 
-    public void ToTrackingState()
-    {
-        enemy.currentState = enemy.trackingState;
-    }
-    
+    public void ToTrackingState() => enemy.currentState = enemy.trackingState;
+
 
 
     void Look()
+{
+    Collider[] targetsInViewRadius = Physics.OverlapSphere(enemy.transform.position, enemy.sightRadius, enemy.targetMask);
+
+    for (int i = 0; i < targetsInViewRadius.Length; i++)
     {
-        Debug.DrawRay(enemy.eye.position, enemy.eye.forward * enemy.sightRange, Color.green);
-        RaycastHit hit;
-        if(Physics.Raycast(enemy.eye.position, enemy.eye.forward, out hit, enemy.sightRange) && hit.collider.CompareTag("Player"))
+        if (targetsInViewRadius[i].CompareTag("Player"))
         {
-            enemy.chaseTarget = hit.transform;
+            Transform target = targetsInViewRadius[i].transform;
+            Vector3 dirToTarget = (target.position - enemy.transform.position).normalized;
+            if (Vector3.Angle(enemy.transform.forward, dirToTarget) < enemy.sightAngle)
+            {
+                float dstToTarget = Vector3.Distance(enemy.transform.position, target.position);
+                if (!Physics.Raycast(enemy.transform.position, dirToTarget, dstToTarget, enemy.obstacleMask))
+                {
+                    enemy.chaseTarget = target;
+                    ToAlertState();
+                }
+            }
         }
     }
+}
 
 
     void Patrol()
@@ -73,7 +74,6 @@ public class EnemyPatrolState : IEnemyState
         if(enemy.navMeshAgent.remainingDistance <= enemy.navMeshAgent.stoppingDistance && !enemy.navMeshAgent.pathPending)
         {
             nextWaypoint = (nextWaypoint + 1) % enemy.waypoints.Length;
-            ToAlertState();
         }
         
     }

@@ -7,7 +7,12 @@ public class EnemyStateMachine : MonoBehaviour
 {
     [Header("Eye Info")]
     public float sightRange;
+    public float sightRadius;
+    [Range(0,360)]
+    public float sightAngle;
     public Transform eye;
+    public LayerMask targetMask;
+    public LayerMask obstacleMask;
 
     [Header("Search Info")]
     public MeshRenderer indicator;
@@ -35,20 +40,19 @@ public class EnemyStateMachine : MonoBehaviour
     }
 
 
-    void Start()
+      public Vector3 DirFromAngle(float angleInDeg, bool angleIsGlobal)
     {
-        currentState = patrolState;
-    }
-
-    
-    void Update()
-    {
-        currentState.UpdateState(); 
+        if (!angleIsGlobal)
+            angleInDeg += transform.eulerAngles.y;
+        return new Vector3(Mathf.Sin(angleInDeg * Mathf.Deg2Rad), 0, Mathf.Cos(angleInDeg * Mathf.Deg2Rad));
     }
 
 
-    private void OnTriggerEnter(Collider other)
-    {
-        currentState.OnTriggerEnter(other);
-    }
+    void Start() => currentState = patrolState;
+
+
+    void Update() => currentState.UpdateState();
+
+
+    private void OnTriggerEnter(Collider other) => currentState.OnTriggerEnter(other);
 }

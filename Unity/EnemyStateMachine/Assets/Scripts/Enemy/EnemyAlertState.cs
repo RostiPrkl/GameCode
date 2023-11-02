@@ -6,12 +6,9 @@ public class EnemyAlertState : IEnemyState
 {
     private EnemyStateMachine enemy;
     float searchTimer;
-    
 
-    public EnemyAlertState(EnemyStateMachine enemystateMachine)
-    {
-        enemy = enemystateMachine;
-    }
+
+    public EnemyAlertState(EnemyStateMachine enemystateMachine) => enemy = enemystateMachine;
 
 
     public void UpdateState()
@@ -25,7 +22,6 @@ public class EnemyAlertState : IEnemyState
     {
 
     }
-
 
     public void ToPatrolState()
     {
@@ -47,11 +43,7 @@ public class EnemyAlertState : IEnemyState
     }
 
 
-    public void ToTrackingState()
-    {
-        //searchTimer = 0;
-        enemy.currentState = enemy.trackingState;
-    }
+    public void ToTrackingState() => enemy.currentState = enemy.trackingState;
 
 
     void Search()
@@ -67,12 +59,24 @@ public class EnemyAlertState : IEnemyState
 
     void Look()
     {
-        Debug.DrawRay(enemy.eye.position, enemy.eye.forward * enemy.sightRange, Color.yellow);
-        RaycastHit hit;
-        if(Physics.Raycast(enemy.eye.position, enemy.eye.forward, out hit, enemy.sightRange) && hit.collider.CompareTag("Player"))
+        Collider[] targetsInViewRadius = Physics.OverlapSphere(enemy.transform.position, enemy.sightRadius, enemy.targetMask);
+
+        for (int i = 0; i < targetsInViewRadius.Length; i++)
         {
-            enemy.chaseTarget = hit.transform;
-            ToChaseState();
+            if (targetsInViewRadius[i].CompareTag("Player"))
+            {
+                Transform target = targetsInViewRadius[i].transform;
+                Vector3 dirToTarget = (target.position - enemy.transform.position).normalized;
+                if (Vector3.Angle(enemy.transform.forward, dirToTarget) < enemy.sightAngle)
+                {
+                    float dstToTarget = Vector3.Distance(enemy.transform.position, target.position);
+                    if (!Physics.Raycast(enemy.transform.position, dirToTarget, dstToTarget, enemy.obstacleMask))
+                    {
+                        enemy.chaseTarget = target;
+                        ToChaseState();
+                    }
+                }
+            }
         }
     }
 }
