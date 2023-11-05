@@ -19,7 +19,7 @@ public class EnemyStateMachine : MonoBehaviour
     public float searchDuration;
     public float searchTurnSpeed;
     public Transform[] waypoints;
-    public Vector3 lastKnownPlayerPosition;
+    [HideInInspector] public Vector3 lastKnownPlayerPosition;
 
     [HideInInspector] public Transform chaseTarget;
     [HideInInspector] public IEnemyState currentState;
